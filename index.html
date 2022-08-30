@@ -9,7 +9,11 @@
   <script src="index.js" defer></script>
 </head>
 <body> 
-  <h1 id="score">0</h1>
+  <div id="game-window">
+    <div id="title">
+    <h1 id="game-title">Whack-a-Mole: Normal Mode</h1>
+    <h2 id="score">Moles Whacked: 0</h2>
+  </div>
   <div id="whack-a-mole">
     <div class="hole"></div>
     <div class="hole"></div>
@@ -21,5 +25,11 @@
     <div class="hole"></div>
     <div class="hole"></div>
   </div>
+  <div id="game-controls">
+    <button onclick="easyMode()">Easy Mode</button>
+    <button onclick="normalMode()">Normal Mode</button>
+    <button onclick="hardMode()">Hard Mode</button>
+  </div>
+</div>
 </body>
 </html>
