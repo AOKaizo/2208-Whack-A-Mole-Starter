@@ -33,6 +33,8 @@ function easyMode() {
     10000
   );
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Easy Mode`
+  score = 0;
+  [...$("#score")][0].innerText = `Moles Whacked: ${score}`
 }
 
 function normalMode() {
@@ -57,7 +59,9 @@ function normalMode() {
       ].className = "hole"),
     2500
   );
-  [...$("#game-title")][0].innerText = `Whack-a-Mole: Normal Mode`
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: Normal Mode`;
+  score = 0;
+  [...$("#score")][0].innerText = `Moles Whacked: ${score}`
 }
 
 function hardMode() {
@@ -85,6 +89,8 @@ function hardMode() {
   );
 
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Hard Mode`;
+  score = 0;
+  $("#score").innerText = `Moles Whacked: ${score}`;
 }
 
 holes.forEach((element) =>
