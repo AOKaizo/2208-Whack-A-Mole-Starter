@@ -93,11 +93,19 @@ function hardMode() {
   $("#score").innerText = `Moles Whacked: ${score}`;
 }
 
-holes.forEach((element) =>
-  element.addEventListener("click", () => {
-    if (element.className === "mole") {
-      element.className = "hole";
+$(".hole").click(function () {
+    if (this.className === "mole") {
+      this.className = "hole";
       [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
     }
-  })
-);
+  });
+
+// ---Click with addEventListener---
+// holes.forEach((element) =>
+//   element.addEventListener("click", () => {
+//     if (element.className === "mole") {
+//       element.className = "hole";
+//       [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
+//     }
+//   })
+// );
