@@ -8,11 +8,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="index.js" defer></script>
 </head>
-<body> 
+<body id="game-screen"> 
   <div id="game-window">
     <div id="title">
     <h1 id="game-title">Whack-a-Mole: Normal Mode</h1>
-    <h2 id="score">Moles Whacked: 0</h2>
+    <span id="score-span"><h2 id="score">Moles Whacked: 0</h2><img id="hammer-image" src="images/hammer-wind-up.png" /></span>
   </div>
   <div id="whack-a-mole">
     <div class="hole"></div>
@@ -29,6 +29,7 @@
     <button onclick="easyMode()">Easy Mode</button>
     <button onclick="normalMode()">Normal Mode</button>
     <button onclick="hardMode()">Hard Mode</button>
+    <button onclick="ludicrousMode()">Ludicrous Mode</button>
   </div>
 </div>
 </body>

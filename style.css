@@ -1,17 +1,16 @@
-
 body {
-  background-image: url('images/Grass Background Cartoon.jpeg');
+  background-image: url("images/Grass Background Cartoon.jpeg");
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 99%;
   height: 99%;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 #game-window {
-  display:flex;
+  display: flex;
   width: 50%;
   flex-direction: column;
   place-items: center;
@@ -19,18 +18,17 @@ body {
 }
 
 #whack-a-mole {
+  /* cursor: url('images/hammer-wind-up.png'), auto; */
   background-color: darkolivegreen;
   border: solid 20px #000;
   padding: 20px;
   width: 360px;
   display: flex;
   flex-wrap: wrap;
-
 }
 
 #title {
   display: block;
-  /* block-direction: column; */
   text-align: center;
 }
 
@@ -70,13 +68,26 @@ body {
   display: inline-block;
   border-radius: 4px;
   background-color: darkolivegreen;
-  box-shadow:#000;
-  color: #FFFFFF;
+  box-shadow: #000;
+  color: #ffffff;
   text-align: center;
   font-size: 20px;
   padding: 20px;
   width: 100%;
   transition: all 0.5s;
-  cursor: pointer;
   margin: 10px;
+}
+
+#hammer-image {
+  position: fixed;
+  top: 4vh;
+  left: 55vw;
+}
+
+/* #show {
+  display: ;
+} */
+
+#hide {
+  display: none;
 }
