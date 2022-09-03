@@ -293,22 +293,3 @@ $(".hole").click(function () {
     }
   }
 });
-
-// ---Click with addEventListener---
-// holes.forEach((element) =>
-//   element.addEventListener("click", () => {
-//     if (element.className === "mole") {
-//       element.className = "hole";
-//       [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
-//     }
-//   })
-// );
-
-// $("#game-window").on('mousedown', () => this.style.cursor = `url(images/hammer-hit.png), auto`);
-
-// $('#whack-a-mole').mousemove(function (e) {
-//   $("#mario-hammer").css({
-//     left: e.pageX - 30,
-//     top: e.pageY - 40,
-//   });
-// });
