@@ -1,4 +1,5 @@
 let score = 0;
+let timer = 60;
 let holes = [...$(".hole")];
 let moles = [...$(".mole")];
 let easyMoles;
@@ -9,6 +10,18 @@ let hardMoles;
 let hardHoles;
 let ludicrousMoles;
 let ludicrousHoles;
+function easySel() {
+  localStorage.setItem("modeSelector", "easy");
+}
+function normalSel() {
+  localStorage.setItem("modeSelector", "normal");
+}
+function hardSel() {
+  localStorage.setItem("modeSelector", "hard");
+}
+function ludicrousSel() {
+  localStorage.setItem("modeSelector", "ludicrous");
+}
 let marioWind = () => {
   $("#hammer-image")[0].src = "images/hammer-wind-up.png";
   $("#hammer-image")[0].style.left = "55vw";
@@ -17,7 +30,19 @@ let marioHit = () => {
   $("#hammer-image")[0].src = "images/hammer-hit.png";
   $("#hammer-image")[0].style.left = "55vw";
 };
-normalMode();
+
+function whichMode() {
+  if (localStorage.getItem("modeSelector") === "easy") {
+    easyMode();
+  } else if (localStorage.getItem("modeSelector") === "normal") {
+    normalMode();
+  } else if (localStorage.getItem("modeSelector") === "hard") {
+    hardMode();
+  } else if (localStorage.getItem("modeSelector") === "ludicrous") {
+    ludicrousMode();
+  }
+}
+whichMode();
 
 function easyMode() {
   clearInterval(easyMoles);
@@ -51,6 +76,7 @@ function easyMode() {
       ].className = "hole"),
     5000
   );
+  timer = 60;
 
   marioWind();
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Easy Mode`;
@@ -89,6 +115,8 @@ function normalMode() {
       ].className = "hole"),
     1500
   );
+
+  timer = 60;
 
   marioWind();
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Normal Mode`;
@@ -130,10 +158,12 @@ function hardMode() {
     200
   );
 
+  timer = 60;
+
   marioWind();
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Hard Mode`;
   score = 0;
-  [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
+  [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
 }
 
 function ludicrousMode() {
@@ -164,9 +194,83 @@ function ludicrousMode() {
     )
   );
 
+  timer = 60;
+
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Ludicrous Mode`;
   score = 0;
 }
+let launchPage = () => (window.location.pathname = "/index.html");
+startOverButton = document.createElement("button");
+startOverButton.innerText = "Play Again";
+startOverButton.style.width = "30vw";
+startOverButton.style.height = "15vh";
+startOverButton.style["font-size"] = "6vh";
+startOverButton.setAttribute("onclick", "launchPage()");
+
+let victory = () => {
+  $(
+    "#whack-a-mole"
+  )[0].innerHTML = `Well Done! This was a mighty blow to the enemy. You whacked ${score} moles!`;
+  $("#whack-a-mole")[0].style["width"] = "120%";
+  $("#whack-a-mole")[0].style["font-size"] = "10vh";
+  $("#whack-a-mole")[0].style["text-align"] = "center";
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: You Win!`;
+  [...$("#game-title")][0].style["font-size"] = `10vh`;
+  [...$("#title")][0].style["width"] = `150%`;
+  [...$("#score-span")][0].remove();
+  [...$("#timer")][0].remove();
+  [...$("#game-controls")][0].innerHTML = "";
+  [...$("#game-controls")][0].appendChild(startOverButton);
+};
+
+let defeat = () => {
+  $(
+    "#whack-a-mole"
+  )[0].innerHTML = `What! There are too many of them! We'll have to fall back but at least there are ${score} less to deal with next time.`;
+  $("#whack-a-mole")[0].style["width"] = "165%";
+  $("#whack-a-mole")[0].style["font-size"] = "10vh";
+  $("#whack-a-mole")[0].style["text-align"] = "center";
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: Moles Win!`;
+  [...$("#game-title")][0].style["font-size"] = `10vh`;
+  [...$("#title")][0].style["width"] = `150%`;
+  [...$("#score-span")][0].remove();
+  [...$("#timer")][0].remove();
+  [...$("#game-controls")][0].innerHTML = "";
+  [...$("#game-controls")][0].appendChild(startOverButton);
+  clearInterval(timeKeeping);
+};
+
+let ludicrousDefeat = () => {
+  $(
+    "#whack-a-mole"
+  )[0].innerHTML = `You challenged them in the seat of their power?!?! You fool, you have doomed us all with your hubris. Doomed us all!`;
+  $("#whack-a-mole")[0].style["width"] = "175%";
+  $("#whack-a-mole")[0].style["font-size"] = "10vh";
+  $("#whack-a-mole")[0].style["text-align"] = "center";
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: Moles Win!`;
+  [...$("#game-title")][0].style["font-size"] = `10vh`;
+  [...$("#title")][0].style["width"] = `150%`;
+  [...$("#score-span")][0].remove();
+  [...$("#timer")][0].remove();
+  [...$("#game-controls")][0].innerHTML = "";
+  [...$("#game-controls")][0].appendChild(startOverButton);
+  clearInterval(timeKeeping);
+};
+
+let timeKeeping = setInterval(() => {
+  if (
+    timer === 0 &&
+    [...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`
+  ) {
+    ludicrousDefeat();
+  } else if (timer === 0 && score > 24) {
+    victory();
+  } else if (timer === 0 && score < 25) {
+    defeat();
+  } else {
+    $("#timer")[0].innerText = `Time Remaining: ${timer--}`;
+  }
+}, 1000);
 
 $("#whack-a-mole").mousedown(marioHit);
 

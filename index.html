@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Whack-a-mole</title>
-  <link rel="stylesheet" href="style.css"/>
-  <!-- The below link gives you access to Jquery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="index.js" defer></script>
-</head>
-<body id="game-screen"> 
-  <div id="game-window">
-    <div id="title">
-    <h1 id="game-title">Whack-a-Mole: Normal Mode</h1>
-    <span id="score-span"><h2 id="score">Moles Whacked: 0</h2><img id="hammer-image" src="images/hammer-wind-up.png" /></span>
-  </div>
-  <div id="whack-a-mole">
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-    <div class="hole"></div>
-  </div>
-  <div id="game-controls">
-    <button onclick="easyMode()">Easy Mode</button>
-    <button onclick="normalMode()">Normal Mode</button>
-    <button onclick="hardMode()">Hard Mode</button>
-    <button onclick="ludicrousMode()">Ludicrous Mode</button>
-  </div>
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whack-a-mole</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- The below link gives you access to Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="index.js" defer></script> -->
+    <script src="index.js" defer></script>
+  </head>
+  <body id="launch-screen">
+    <h1 id="page-title">Whack-a-Mole</h1>
+    <div id="launch-window">
+      <div id="objectives">
+        <h2 id="objective-title">Objective:</h2>
+        <p id="objective-text">
+          Whack those moles! The mighty moles have taunted us for the last time!
+          Whack as many of them as you can within sixty seconds.
+        </p>
+      </div>
+      <div id="game-controls">
+        <button onclick="easysel()">Easy Mode</button>
+        <button onclick="normalSel()">Normal Mode</button>
+        <button onclick="hardSel()">Hard Mode</button>
+        <button onclick="ludicrousSel()">Ludicrous Mode</button>
+      </div>
+      <form action="/game.html">
+        <button id="start-button" onclick="submit">Let Me At'em!</button>
+      </form>
+    </div>
+  </body>
 </html>
