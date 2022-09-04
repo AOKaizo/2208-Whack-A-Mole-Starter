@@ -447,22 +447,27 @@ let timeKeeping = setInterval(() => {
     [...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`
   ) {
     ludicrousDefeat();
+    clearInterval(timeKeeping);
   } else if (
     timer === 0 &&
     score > 24 &&
     [...$("#game-title")][0].innerText === `Whack-a-Mole: Zombie Mode`
   ) {
     zombieVictory();
+    clearInterval(timeKeeping);
   } else if (
     timer === 0 &&
     score < 25 &&
     [...$("#game-title")][0].innerText === `Whack-a-Mole: Zombie Mode`
   ) {
     zombieDefeat();
+    clearInterval(timeKeeping);
   } else if (timer === 0 && score > 24) {
     victory();
+    clearInterval(timeKeeping);
   } else if (timer === 0 && score < 25) {
     defeat();
+    clearInterval(timeKeeping);
   } else {
     if ($("#timer")[0]) {
       $("#timer")[0].innerText = `Time Remaining: ${timer--}`;
