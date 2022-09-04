@@ -43,6 +43,25 @@ let launchPageNightMode = () => {
     (element) => (element.style["background-color"] = "darkslategrey")
   );
 };
+let launchPageBloodyMode = () => {
+  [...$("#launch-screen")][0].style["background-image"] =
+    "url('images/bloody-forest-background.png')";
+  [...$("#page-title")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#page-title")][0].style["color"] = "red";
+  [...$("#objective-title")][0].style["text-shadow"] = "1px 1px black";
+  [...$("#objective-text")][0].style["text-shadow"] = "1px 1px black";
+  [...$("#objective-title")][0].style["color"] = "red";
+  [...$("#objective-text")][0].style["color"] = "red";
+  [...$("#current-difficulty")][0].style["color"] = "red";
+  [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px black";
+  [...$("#launch-window")][0].style["background-color"] = "darkred";
+  [...$("#launch-window")][0].style["border"] = "solid 20px black";
+  [...$("div button")].forEach(
+    (element) => (element.style["background-color"] = "red")
+  );
+  [...$("button")].forEach((element) => (element.style["color"] = "black"));
+};
+
 let launchPageDayMode = () => {
   [...$("#launch-screen")][0].style["background-image"] =
     "url('images/normal-forest-background.jpeg')";
@@ -135,7 +154,7 @@ function hardSel() {
 function ludicrousSel() {
   localStorage.setItem("modeSelector", "ludicrous");
   currentDifficulty();
-  launchPageDayMode();
+  launchPageBloodyMode();
 }
 function zombieSel() {
   localStorage.setItem("modeSelector", "zombie");
