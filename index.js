@@ -10,7 +10,11 @@ let hardMoles;
 let hardHoles;
 let ludicrousMoles;
 let ludicrousHoles;
-let currentDifficulty = () => $('#current-difficulty')[0].innerText = `Difficulty Selected: ${localStorage.getItem("modeSelector")[0].toUpperCase() + localStorage.getItem("modeSelector").slice(1)}`
+let currentDifficulty = () =>
+  ($("#current-difficulty")[0].innerText = `Difficulty Selected: ${
+    localStorage.getItem("modeSelector")[0].toUpperCase() +
+    localStorage.getItem("modeSelector").slice(1)
+  }`);
 function easySel() {
   localStorage.setItem("modeSelector", "easy");
   currentDifficulty();
@@ -36,22 +40,7 @@ let marioHit = () => {
   $("#hammer-image")[0].style.left = "55vw";
 };
 
-function whichMode() {
-  if (localStorage.getItem("modeSelector") === "easy") {
-    easyMode();
-  } else if (localStorage.getItem("modeSelector") === "normal") {
-    normalMode();
-  } else if (localStorage.getItem("modeSelector") === "hard") {
-    hardMode();
-  } else if (localStorage.getItem("modeSelector") === "ludicrous") {
-    ludicrousMode();
-  } else {
-    normalMode();
-  }
-}
-whichMode();
-
-function easyMode() {
+let easyMode = function () {
   clearInterval(easyMoles);
   clearInterval(easyHoles);
   clearInterval(hardMoles);
@@ -89,9 +78,9 @@ function easyMode() {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Easy Mode`;
   score = 0;
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
-}
+};
 
-function normalMode() {
+let normalMode = function () {
   clearInterval(easyMoles);
   clearInterval(easyHoles);
   clearInterval(hardMoles);
@@ -129,9 +118,9 @@ function normalMode() {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Normal Mode`;
   score = 0;
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
-}
+};
 
-function hardMode() {
+let hardMode = function () {
   clearInterval(easyMoles);
   clearInterval(easyHoles);
   clearInterval(hardMoles);
@@ -154,16 +143,16 @@ function hardMode() {
     500
   );
 
-  hardHoles = setInterval(
-    () =>
-      (holes.filter((element) => element.className === "mole")[
+  hardHoles = setInterval(() => {
+    if (holes.filter((element) => element.className === "mole").length !== 0) {
+      holes.filter((element) => element.className === "mole")[
         Math.floor(
           Math.random() *
             holes.filter((element) => element.className === "mole").length
         )
-      ].className = "hole"),
-    200
-  );
+      ].className = "hole";
+    }
+  }, 200);
 
   timer = 60;
 
@@ -171,9 +160,9 @@ function hardMode() {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Hard Mode`;
   score = 0;
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
-}
+};
 
-function ludicrousMode() {
+let ludicrousMode = function () {
   clearInterval(easyMoles);
   clearInterval(easyHoles);
   clearInterval(hardMoles);
@@ -205,7 +194,8 @@ function ludicrousMode() {
 
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Ludicrous Mode`;
   score = 0;
-}
+};
+
 let launchPage = () => (window.location.pathname = "./Whack-A-Mole/");
 startOverButton = document.createElement("button");
 startOverButton.innerText = "Play Again";
@@ -275,7 +265,9 @@ let timeKeeping = setInterval(() => {
   } else if (timer === 0 && score < 25) {
     defeat();
   } else {
-    $("#timer")[0].innerText = `Time Remaining: ${timer--}`;
+    if ($("#timer")[0]) {
+      $("#timer")[0].innerText = `Time Remaining: ${timer--}`;
+    }
   }
 }, 1000);
 
@@ -289,7 +281,11 @@ $(".hole").click(function () {
     if ([...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`) {
       [...$("#score")][0].innerText =
         "Moles Whacked: YOU DARE CHALLENGE ME!?!?!";
-      $("#hammer-image")[0].style.left = "68vw";
+      $("#score-span")[0].style.display = "block";
+      $("#score-span")[0].style.margin = "0";
+      $("#hammer-image")[0].style.position = "fixed";
+      $("#hammer-image")[0].style.left = "70vw";
+      $("#hammer-image")[0].style.top = "2vh";
       $("#hammer-image")[0].src = "images/uhoh-defeat.png";
       $("#whack-a-mole").unbind("mousedown", marioHit);
       $("#whack-a-mole").unbind("mouseup", marioWind);
@@ -300,3 +296,27 @@ $(".hole").click(function () {
     }
   }
 });
+
+clearInterval(easyMoles);
+clearInterval(easyHoles);
+clearInterval(hardMoles);
+clearInterval(hardHoles);
+clearInterval(normalMoles);
+clearInterval(normalHoles);
+clearInterval(ludicrousMoles);
+clearInterval(ludicrousHoles);
+
+function whichMode() {
+  if (localStorage.getItem("modeSelector") === "easy") {
+    easyMode();
+  } else if (localStorage.getItem("modeSelector") === "normal") {
+    normalMode();
+  } else if (localStorage.getItem("modeSelector") === "hard") {
+    hardMode();
+  } else if (localStorage.getItem("modeSelector") === "ludicrous") {
+    ludicrousMode();
+  } else {
+    normalMode();
+  }
+}
+whichMode();

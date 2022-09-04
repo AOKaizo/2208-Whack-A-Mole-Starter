@@ -9,7 +9,7 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-shadow: 0.5px 0.5px white;
   font-size: 3vh;
-  margin: 0;
+  margin: -1%;
   padding: 0;
   user-select: none;
   -webkit-user-select: none;
@@ -84,6 +84,7 @@ body {
 #title {
   display: block;
   text-align: center;
+  flex-direction: column;
 }
 
 #game-title {
@@ -137,11 +138,22 @@ body {
   margin: 10px;
 }
 
+#score-span {
+  display: flex;
+  place-content: center;
+  margin: -10%;
+  padding: -5%;
+  
+  text-align: center;
+}
 #hammer-image {
+flex-direction: row;
+}
+/* #hammer-image {
   position: fixed;
   top: 4vh;
   left: 55vw;
-}
+} */
 
 #hide {
   display: none;
