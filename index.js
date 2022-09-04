@@ -77,6 +77,23 @@ let nightMode = () => {
   );
 };
 
+let bloodyMode = () => {
+  [...$("#game-screen")][0].style["background-image"] =
+    "url('images/bloody-forest-background.png')";
+  [...$("#game-title")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#score")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#timer")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#game-title")][0].style["color"] = "red";
+  [...$("#score")][0].style["color"] = "red";
+  [...$("#timer")][0].style["color"] = "red";
+  [...$("#whack-a-mole")][0].style["background-color"] = "darkred";
+  [...$("#whack-a-mole")][0].style["border"] = "solid 20px black";
+  [...$("button")].forEach(
+    (element) => (element.style["background-color"] = "red")
+  );
+  [...$("button")].forEach((element) => (element.style["color"] = "black"));
+};
+
 let dayMode = () => {
   [...$("#game-screen")][0].style["background-image"] =
     "url('images/normal-forest-background.jpeg')";
@@ -269,7 +286,7 @@ let ludicrousMode = function () {
 
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Ludicrous Mode`;
   score = 0;
-  dayMode();
+  bloodyMode();
 };
 
 let zombieMode = function () {
@@ -316,6 +333,12 @@ startOverButton.innerText = "Play Again";
 startOverButton.style.width = "30vw";
 startOverButton.style.height = "15vh";
 startOverButton.style["font-size"] = "6vh";
+startOverButton.style["background-color"] =
+  localStorage.getItem("modeSelector") === "ludicrous"
+    ? "red"
+    : localStorage.getItem("modeSelector") === "zombie"
+    ? "darkslategray"
+    : "darkolivegreen";
 startOverButton.setAttribute("onclick", "launchPage()");
 
 let victory = () => {
@@ -401,7 +424,7 @@ let ludicrousDefeat = () => {
 
 let timeKeeping = setInterval(() => {
   if (
-    timer === 0 &&
+    timer === 50 &&
     [...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`
   ) {
     ludicrousDefeat();
