@@ -286,7 +286,7 @@ let ludicrousMode = function () {
   ludicrousMoles = setInterval(
     () => (
       holes.forEach((element) =>
-        Math.ceil(Math.random() * 2) > 1 ? (element.className = "mole") : null
+        Math.ceil(Math.random() * 2) > 1 ? (element.className = "bloody-mole") : null
       ),
       1000
     )

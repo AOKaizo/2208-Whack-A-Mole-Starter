@@ -128,6 +128,14 @@ body {
   margin: 5px;
 }
 
+.bloody-mole {
+  background-image: url("images/bloody-mole.png");
+  background-size: contain;
+  width: 110px;
+  height: 123px;
+  margin: 5px;
+}
+
 #game-controls {
   display: flex;
 }
