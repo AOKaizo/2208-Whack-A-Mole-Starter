@@ -29,6 +29,11 @@ body {
   place-content: center;
 }
 
+#launch-options {
+  place-items: center;
+  text-align: center;
+}
+
 #objectives {
   display: flex;
   column-gap: 5%;

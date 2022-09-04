@@ -10,17 +10,22 @@ let hardMoles;
 let hardHoles;
 let ludicrousMoles;
 let ludicrousHoles;
+let currentDifficulty = () => $('#current-difficulty')[0].innerText = `Difficulty Selected: ${localStorage.getItem("modeSelector")[0].toUpperCase() + localStorage.getItem("modeSelector").slice(1)}`
 function easySel() {
   localStorage.setItem("modeSelector", "easy");
+  currentDifficulty();
 }
 function normalSel() {
   localStorage.setItem("modeSelector", "normal");
+  currentDifficulty();
 }
 function hardSel() {
   localStorage.setItem("modeSelector", "hard");
+  currentDifficulty();
 }
 function ludicrousSel() {
   localStorage.setItem("modeSelector", "ludicrous");
+  currentDifficulty();
 }
 let marioWind = () => {
   $("#hammer-image")[0].src = "images/hammer-wind-up.png";
@@ -40,6 +45,8 @@ function whichMode() {
     hardMode();
   } else if (localStorage.getItem("modeSelector") === "ludicrous") {
     ludicrousMode();
+  } else {
+    normalMode();
   }
 }
 whichMode();
