@@ -206,7 +206,7 @@ function ludicrousMode() {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Ludicrous Mode`;
   score = 0;
 }
-let launchPage = () => (window.location.pathname = "./index.html");
+let launchPage = () => (window.location.pathname = "./");
 startOverButton = document.createElement("button");
 startOverButton.innerText = "Play Again";
 startOverButton.style.width = "30vw";
