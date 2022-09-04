@@ -10,6 +10,91 @@ let hardMoles;
 let hardHoles;
 let ludicrousMoles;
 let ludicrousHoles;
+let zombieMoles;
+let zombieHoles;
+
+let clearAllInt = () => {
+  this.clearInterval(easyMoles);
+  this.clearInterval(easyHoles);
+  this.clearInterval(hardMoles);
+  this.clearInterval(hardHoles);
+  this.clearInterval(normalMoles);
+  this.clearInterval(normalHoles);
+  this.clearInterval(ludicrousMoles);
+  this.clearInterval(ludicrousHoles);
+  this.clearInterval(zombieMoles);
+  this.clearInterval(zombieHoles);
+};
+
+let launchPageNightMode = () => {
+  [...$("#launch-screen")][0].style["background-image"] =
+    "url('images/zombie-forest-background.png')";
+  [...$("#page-title")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#page-title")][0].style["color"] = "green";
+  [...$("#objective-title")][0].style["text-shadow"] = "1px 1px black";
+  [...$("#objective-text")][0].style["text-shadow"] = "1px 1px black";
+  [...$("#objective-title")][0].style["color"] = "green";
+  [...$("#objective-text")][0].style["color"] = "green";
+  [...$("#current-difficulty")][0].style["color"] = "green";
+  [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px black";
+  [...$("#launch-window")][0].style["background-color"] = "darkslategrey";
+  [...$("#launch-window")][0].style["border"] = "solid 20px grey";
+  [...$("div button")].forEach(
+    (element) => (element.style["background-color"] = "darkslategrey")
+  );
+};
+let launchPageDayMode = () => {
+  [...$("#launch-screen")][0].style["background-image"] =
+    "url('images/normal-forest-background.jpeg')";
+  [...$("#page-title")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
+  [...$("#page-title")][0].style["color"] = "black";
+  [...$("#objective-title")][0].style["text-shadow"] = "1px 1px white";
+  [...$("#objective-text")][0].style["text-shadow"] = "1px 1px white";
+  [...$("#objective-title")][0].style["color"] = "black";
+  [...$("#objective-text")][0].style["color"] = "black";
+  [...$("#current-difficulty")][0].style["color"] = "black";
+  [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px white";
+  [...$("#launch-window")][0].style["background-color"] = "olivedrab";
+  [...$("#launch-window")][0].style["border"] = "solid 20px black";
+  [...$("div button")].forEach(
+    (element) => (element.style["background-color"] = "darkolivegreen")
+  );
+};
+
+let nightMode = () => {
+  [...$("#game-screen")][0].style["background-image"] =
+    "url('images/zombie-forest-background.png')";
+  [...$("#game-title")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#score")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#timer")][0].style["text-shadow"] = "4px 4px black";
+  [...$("#game-title")][0].style["color"] = "green";
+  [...$("#score")][0].style["color"] = "green";
+  [...$("#timer")][0].style["color"] = "green";
+  [...$("#whack-a-mole")][0].style["background-color"] = "darkslategrey";
+  [...$("#whack-a-mole")][0].style["border"] = "solid 20px grey";
+  [...$("button")].forEach(
+    (element) => (element.style["background-color"] = "darkslategrey")
+  );
+};
+
+let dayMode = () => {
+  [...$("#game-screen")][0].style["background-image"] =
+    "url('images/normal-forest-background.jpeg')";
+  [...$("#game-title")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
+  [...$("#score")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
+  [...$("#timer")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
+  [...$("#game-title")][0].style["color"] = "black";
+  [...$("#score")][0].style["color"] = "black";
+  [...$("#timer")][0].style["color"] = "black";
+  [...$("#whack-a-mole")][0].style["background-color"] = "darkolivegreen";
+  [...$("#whack-a-mole")][0].style["border"] = "solid 20px black";
+  [...$("#game-controls > button")].forEach(
+    (element) => (element.style["background-color"] = "darkolivegreen")
+  );
+};
+
+let moleReset = () => holes.forEach((element) => (element.className = "hole"));
+
 let currentDifficulty = () =>
   ($("#current-difficulty")[0].innerText = `Difficulty Selected: ${
     localStorage.getItem("modeSelector")[0].toUpperCase() +
@@ -18,18 +103,28 @@ let currentDifficulty = () =>
 function easySel() {
   localStorage.setItem("modeSelector", "easy");
   currentDifficulty();
+  launchPageDayMode();
 }
 function normalSel() {
   localStorage.setItem("modeSelector", "normal");
   currentDifficulty();
+  launchPageDayMode();
 }
 function hardSel() {
   localStorage.setItem("modeSelector", "hard");
   currentDifficulty();
+  launchPageDayMode();
 }
 function ludicrousSel() {
   localStorage.setItem("modeSelector", "ludicrous");
   currentDifficulty();
+  launchPageDayMode();
+}
+function zombieSel() {
+  localStorage.setItem("modeSelector", "zombie");
+  launchPageNightMode();
+  currentDifficulty();
+  launchPageNightMode();
 }
 let marioWind = () => {
   $("#hammer-image")[0].src = "images/hammer-wind-up.png";
@@ -41,14 +136,8 @@ let marioHit = () => {
 };
 
 let easyMode = function () {
-  clearInterval(easyMoles);
-  clearInterval(easyHoles);
-  clearInterval(hardMoles);
-  clearInterval(hardHoles);
-  clearInterval(normalMoles);
-  clearInterval(normalHoles);
-  clearInterval(ludicrousMoles);
-  clearInterval(ludicrousHoles);
+  clearAllInt();
+  moleReset();
 
   easyMoles = setInterval(
     () =>
@@ -78,17 +167,13 @@ let easyMode = function () {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Easy Mode`;
   score = 0;
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
+  dayMode();
 };
 
 let normalMode = function () {
-  clearInterval(easyMoles);
-  clearInterval(easyHoles);
-  clearInterval(hardMoles);
-  clearInterval(hardHoles);
-  clearInterval(normalMoles);
-  clearInterval(normalHoles);
-  clearInterval(ludicrousMoles);
-  clearInterval(ludicrousHoles);
+  clearAllInt();
+  moleReset();
+
   normalMoles = setInterval(
     () =>
       holes.filter((element) => element.className === "hole").length
@@ -118,17 +203,12 @@ let normalMode = function () {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Normal Mode`;
   score = 0;
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
+  dayMode();
 };
 
 let hardMode = function () {
-  clearInterval(easyMoles);
-  clearInterval(easyHoles);
-  clearInterval(hardMoles);
-  clearInterval(hardHoles);
-  clearInterval(normalMoles);
-  clearInterval(normalHoles);
-  clearInterval(ludicrousMoles);
-  clearInterval(ludicrousHoles);
+  clearAllInt();
+  moleReset();
 
   hardMoles = setInterval(
     () =>
@@ -160,17 +240,12 @@ let hardMode = function () {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Hard Mode`;
   score = 0;
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
+  dayMode();
 };
 
 let ludicrousMode = function () {
-  clearInterval(easyMoles);
-  clearInterval(easyHoles);
-  clearInterval(hardMoles);
-  clearInterval(hardHoles);
-  clearInterval(normalMoles);
-  clearInterval(normalHoles);
-  clearInterval(ludicrousMoles);
-  clearInterval(ludicrousHoles);
+  clearAllInt();
+  moleReset();
 
   ludicrousMoles = setInterval(
     () => (
@@ -194,6 +269,45 @@ let ludicrousMode = function () {
 
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Ludicrous Mode`;
   score = 0;
+  dayMode();
+};
+
+let zombieMode = function () {
+  clearAllInt();
+  moleReset();
+
+  zombieMoles = setInterval(
+    () =>
+      holes.filter((element) => element.className === "hole").length
+        ? (holes.filter((element) => element.className === "hole")[
+            Math.floor(
+              Math.random() *
+                holes.filter((element) => element.className === "hole").length
+            )
+          ].className = "zombie-mole")
+        : null,
+    1000
+  );
+
+  zombieHoles = setInterval(
+    () =>
+      (holes.filter((element) => element.className === "zombie-mole")[
+        Math.floor(
+          Math.random() *
+            holes.filter((element) => element.className === "zombie-mole")
+              .length
+        )
+      ].className = "hole"),
+    1500
+  );
+
+  timer = 60;
+
+  marioWind();
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: Zombie Mode`;
+  score = 0;
+  [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
+  nightMode();
 };
 
 let launchPage = () => (window.location.pathname = "./Whack-A-Mole/");
@@ -219,6 +333,21 @@ let victory = () => {
   [...$("#game-controls")][0].innerHTML = "";
   [...$("#game-controls")][0].appendChild(startOverButton);
 };
+let zombieVictory = () => {
+  $(
+    "#whack-a-mole"
+  )[0].innerHTML = `They won't even die properly?! You have done us all a great service in putting them to their final rest. You re-whacked ${score} zombie moles!`;
+  $("#whack-a-mole")[0].style["width"] = "150%";
+  $("#whack-a-mole")[0].style["font-size"] = "10vh";
+  $("#whack-a-mole")[0].style["text-align"] = "center";
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: You Win!`;
+  [...$("#game-title")][0].style["font-size"] = `10vh`;
+  [...$("#title")][0].style["width"] = `150%`;
+  [...$("#score-span")][0].remove();
+  [...$("#timer")][0].remove();
+  [...$("#game-controls")][0].innerHTML = "";
+  [...$("#game-controls")][0].appendChild(startOverButton);
+};
 
 let defeat = () => {
   $(
@@ -230,6 +359,22 @@ let defeat = () => {
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Moles Win!`;
   [...$("#game-title")][0].style["font-size"] = `10vh`;
   [...$("#title")][0].style["width"] = `150%`;
+  [...$("#score-span")][0].remove();
+  [...$("#timer")][0].remove();
+  [...$("#game-controls")][0].innerHTML = "";
+  [...$("#game-controls")][0].appendChild(startOverButton);
+  clearInterval(timeKeeping);
+};
+let zombieDefeat = () => {
+  $(
+    "#whack-a-mole"
+  )[0].innerHTML = `My God. What horrors have we unleashed!? Despite your efforts laying ${score} of them to rest, what remains of humanity is doomed.`;
+  $("#whack-a-mole")[0].style["width"] = "165%";
+  $("#whack-a-mole")[0].style["font-size"] = "10vh";
+  $("#whack-a-mole")[0].style["text-align"] = "center";
+  [...$("#game-title")][0].innerText = `Whack-a-Mole: Zombie Moles Win!`;
+  [...$("#game-title")][0].style["font-size"] = `10vh`;
+  [...$("#title")][0].style["width"] = `185%`;
   [...$("#score-span")][0].remove();
   [...$("#timer")][0].remove();
   [...$("#game-controls")][0].innerHTML = "";
@@ -260,6 +405,18 @@ let timeKeeping = setInterval(() => {
     [...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`
   ) {
     ludicrousDefeat();
+  } else if (
+    timer === 0 &&
+    score > 24 &&
+    [...$("#game-title")][0].innerText === `Whack-a-Mole: Zombie Mode`
+  ) {
+    zombieVictory();
+  } else if (
+    timer === 0 &&
+    score < 25 &&
+    [...$("#game-title")][0].innerText === `Whack-a-Mole: Zombie Mode`
+  ) {
+    zombieDefeat();
   } else if (timer === 0 && score > 24) {
     victory();
   } else if (timer === 0 && score < 25) {
@@ -276,7 +433,7 @@ $("#whack-a-mole").mousedown(marioHit);
 $("#whack-a-mole").mouseup(marioWind);
 
 $(".hole").click(function () {
-  if (this.className === "mole") {
+  if (this.className === "mole" || this.className === "zombie-mole") {
     this.className = "hole";
     if ([...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`) {
       [...$("#score")][0].innerText =
@@ -297,15 +454,6 @@ $(".hole").click(function () {
   }
 });
 
-clearInterval(easyMoles);
-clearInterval(easyHoles);
-clearInterval(hardMoles);
-clearInterval(hardHoles);
-clearInterval(normalMoles);
-clearInterval(normalHoles);
-clearInterval(ludicrousMoles);
-clearInterval(ludicrousHoles);
-
 function whichMode() {
   if (localStorage.getItem("modeSelector") === "easy") {
     easyMode();
@@ -315,8 +463,11 @@ function whichMode() {
     hardMode();
   } else if (localStorage.getItem("modeSelector") === "ludicrous") {
     ludicrousMode();
+  } else if (localStorage.getItem("modeSelector") === "zombie") {
+    zombieMode();
   } else {
     normalMode();
   }
 }
-whichMode();
+
+clearAllInt();

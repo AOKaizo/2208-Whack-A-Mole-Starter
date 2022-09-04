@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="index.js" defer></script>
   </head>
-  <body id="game-screen">
+  <body onload="whichMode()" id="game-screen">
     <div id="game-window">
       <div id="title">
         <h1 id="game-title">Whack-a-Mole: Normal Mode</h1>
@@ -30,6 +30,7 @@
         <div class="hole"></div>
       </div>
       <div id="game-controls">
+        <button onclick="zombieMode()">Zombie Mode</button>
         <button onclick="easyMode()">Easy Mode</button>
         <button onclick="normalMode()">Normal Mode</button>
         <button onclick="hardMode()">Hard Mode</button>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Whack-a-mole</title>
-    <link rel="icon" type="image/x-icon" href="./images/mole.png">
+    <link rel="icon" type="image/x-icon" href="./images/mole.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="index.js" defer></script>
@@ -19,17 +19,18 @@
         </p>
       </div>
       <div id="launch-options">
-      <div onload="normalSel()" id="game-controls">
-        <button onclick="easySel()">Easy Mode</button>
-        <button onclick="normalSel()">Normal Mode</button>
-        <button onclick="hardSel()">Hard Mode</button>
-        <button onclick="ludicrousSel()">Ludicrous Mode</button>
+        <div onload="normalSel()" id="game-controls">
+          <button onclick="zombieSel()">Zombie Mode</button>
+          <button onclick="easySel()">Easy Mode</button>
+          <button onclick="normalSel()">Normal Mode</button>
+          <button onclick="hardSel()">Hard Mode</button>
+          <button onclick="ludicrousSel()">Ludicrous Mode</button>
+        </div>
+        <h3 id="current-difficulty">Difficulty Selected: Normal</h3>
+        <form action="./game.html">
+          <button id="start-button" onclick="submit">Let Me At'em!</button>
+        </form>
       </div>
-      <h3 id="current-difficulty">Difficulty Selected: Normal</h3>
-      <form action="./game.html">
-        <button id="start-button" onclick="submit">Let Me At'em!</button>
-      </form>
-    </div>
     </div>
   </body>
 </html>
