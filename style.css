@@ -63,6 +63,11 @@ body {
   width: 100%;
   transition: all 0.5s;
   margin: 10px;
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background-color: darkgreen;
 }
 
 #game-window {
@@ -120,6 +125,7 @@ body {
   height: 123px;
   margin: 5px;
 }
+
 .zombie-mole {
   background-image: url("images/zombie-mole.png");
   background-size: contain;
@@ -144,6 +150,7 @@ body {
   display: inline-block;
   border-radius: 4px;
   background-color: darkolivegreen;
+  cursor: pointer;
   box-shadow: #000;
   color: #ffffff;
   text-align: center;
@@ -152,6 +159,10 @@ body {
   width: 100%;
   transition: all 0.5s;
   margin: 10px;
+}
+
+button:hover {
+background-color: inherit!important;
 }
 
 #score-span {

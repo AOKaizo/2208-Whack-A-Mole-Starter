@@ -40,9 +40,10 @@ let launchPageNightMode = () => {
   [...$("#launch-window")][0].style["background-color"] = "darkslategrey";
   [...$("#launch-window")][0].style["border"] = "solid 20px grey";
   [...$("div button")].forEach(
-    (element) => (element.style["background-color"] = "darkslategrey")
+    (element) => (element.style["background-color"] = "slategrey")
   );
 };
+
 let launchPageBloodyMode = () => {
   [...$("#launch-screen")][0].style["background-image"] =
     "url('images/bloody-forest-background.png')";
@@ -92,7 +93,7 @@ let nightMode = () => {
   [...$("#whack-a-mole")][0].style["background-color"] = "darkslategrey";
   [...$("#whack-a-mole")][0].style["border"] = "solid 20px grey";
   [...$("button")].forEach(
-    (element) => (element.style["background-color"] = "darkslategrey")
+    (element) => (element.style["background-color"] = "slategrey")
   );
 };
 
