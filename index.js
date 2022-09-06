@@ -13,6 +13,10 @@ let ludicrousHoles;
 let zombieMoles;
 let zombieHoles;
 
+let launchPage = () => (window.location.pathname = "./Whack-A-Mole/");
+
+let moleReset = () => holes.forEach((element) => (element.className = "hole"));
+
 let clearAllInt = () => {
   this.clearInterval(easyMoles);
   this.clearInterval(easyHoles);
@@ -57,10 +61,10 @@ let launchPageBloodyMode = () => {
   [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px black";
   [...$("#launch-window")][0].style["background-color"] = "darkred";
   [...$("#launch-window")][0].style["border"] = "solid 20px black";
-  [...$("div button")].forEach(
-    (element) => (element.style["background-color"] = "red")
-  );
-  [...$("button")].forEach((element) => (element.style["color"] = "black"));
+  [...$("div button")].forEach((element) => {
+    element.style["background-color"] = "red";
+    element.style["color"] = "black";
+  });
 };
 
 let launchPageDayMode = () => {
@@ -76,9 +80,10 @@ let launchPageDayMode = () => {
   [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px white";
   [...$("#launch-window")][0].style["background-color"] = "olivedrab";
   [...$("#launch-window")][0].style["border"] = "solid 20px black";
-  [...$("div button")].forEach(
-    (element) => (element.style["background-color"] = "darkolivegreen")
-  );
+  [...$("div button")].forEach((element) => {
+    element.style["background-color"] = "darkolivegreen";
+    element.style["color"] = "white";
+  });
 };
 
 let nightMode = () => {
@@ -92,26 +97,27 @@ let nightMode = () => {
   [...$("#timer")][0].style["color"] = "green";
   [...$("#whack-a-mole")][0].style["background-color"] = "darkslategrey";
   [...$("#whack-a-mole")][0].style["border"] = "solid 20px grey";
-  [...$("button")].forEach(
-    (element) => (element.style["background-color"] = "slategrey")
-  );
+  [...$("button")].forEach((element) => {
+    element.style["background-color"] = "slategrey";
+    element.style["color"] = "white";
+  });
 };
 
 let bloodyMode = () => {
   [...$("#game-screen")][0].style["background-image"] =
     "url('images/bloody-forest-background.png')";
   [...$("#game-title")][0].style["text-shadow"] = "4px 4px black";
-  [...$("#score")][0].style["text-shadow"] = "4px 4px black";
-  [...$("#timer")][0].style["text-shadow"] = "4px 4px black";
   [...$("#game-title")][0].style["color"] = "red";
+  [...$("#score")][0].style["text-shadow"] = "4px 4px black";
   [...$("#score")][0].style["color"] = "red";
+  [...$("#timer")][0].style["text-shadow"] = "4px 4px black";
   [...$("#timer")][0].style["color"] = "red";
   [...$("#whack-a-mole")][0].style["background-color"] = "darkred";
   [...$("#whack-a-mole")][0].style["border"] = "solid 20px black";
-  [...$("button")].forEach(
-    (element) => (element.style["background-color"] = "red")
-  );
-  [...$("button")].forEach((element) => (element.style["color"] = "black"));
+  [...$("button")].forEach((element) => {
+    element.style["background-color"] = "red";
+    element.style["color"] = "black";
+  });
 };
 
 let dayMode = () => {
@@ -125,54 +131,60 @@ let dayMode = () => {
   [...$("#timer")][0].style["color"] = "black";
   [...$("#whack-a-mole")][0].style["background-color"] = "darkolivegreen";
   [...$("#whack-a-mole")][0].style["border"] = "solid 20px black";
-  [...$("#game-controls > button")].forEach(
-    (element) => (element.style["background-color"] = "darkolivegreen")
-  );
+  [...$("button")].forEach((element) => {
+    element.style["background-color"] = "darkolivegreen";
+    element.style["color"] = "white";
+  });
 };
 
-let moleReset = () => holes.forEach((element) => (element.className = "hole"));
+function currentDifficulty() {
+  return ($("#current-difficulty")[0].innerText = `Difficulty Selected: ${localStorage.getItem("modeSelector")[0].toUpperCase() +
+    localStorage.getItem("modeSelector").slice(1)}`);
+}
 
-let currentDifficulty = () =>
-  ($("#current-difficulty")[0].innerText = `Difficulty Selected: ${
-    localStorage.getItem("modeSelector")[0].toUpperCase() +
-    localStorage.getItem("modeSelector").slice(1)
-  }`);
 function easySel() {
   localStorage.setItem("modeSelector", "easy");
   currentDifficulty();
   launchPageDayMode();
 }
+
 function normalSel() {
   localStorage.setItem("modeSelector", "normal");
   currentDifficulty();
   launchPageDayMode();
 }
+
 function hardSel() {
   localStorage.setItem("modeSelector", "hard");
   currentDifficulty();
   launchPageDayMode();
 }
+
 function ludicrousSel() {
   localStorage.setItem("modeSelector", "ludicrous");
   currentDifficulty();
   launchPageBloodyMode();
 }
+
 function zombieSel() {
   localStorage.setItem("modeSelector", "zombie");
   launchPageNightMode();
   currentDifficulty();
   launchPageNightMode();
 }
+
 let marioWind = () => {
   $("#hammer-image")[0].src = "images/hammer-wind-up.png";
   $("#hammer-image")[0].style.left = "55vw";
 };
+
 let marioHit = () => {
   $("#hammer-image")[0].src = "images/hammer-hit.png";
   $("#hammer-image")[0].style.left = "55vw";
 };
 
 let easyMode = function () {
+  localStorage.setItem("modeSelector", "easy");
   clearAllInt();
   moleReset();
 
@@ -208,6 +220,7 @@ let easyMode = function () {
 };
 
 let normalMode = function () {
+  localStorage.setItem("modeSelector", "normal");
   clearAllInt();
   moleReset();
 
@@ -244,6 +257,7 @@ let normalMode = function () {
 };
 
 let hardMode = function () {
+  localStorage.setItem("modeSelector", "hard");
   clearAllInt();
   moleReset();
 
@@ -274,20 +288,26 @@ let hardMode = function () {
   timer = 60;
 
   marioWind();
+
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Hard Mode`;
   score = 0;
+
   [...$("#score")][0].innerText = `Moles Whacked: ${score}`;
+
   dayMode();
 };
 
 let ludicrousMode = function () {
+  localStorage.setItem("modeSelector", "ludicrous");
   clearAllInt();
   moleReset();
 
   ludicrousMoles = setInterval(
     () => (
       holes.forEach((element) =>
-        Math.ceil(Math.random() * 2) > 1 ? (element.className = "bloody-mole") : null
+        Math.ceil(Math.random() * 2) > 1
+          ? (element.className = "bloody-mole")
+          : null
       ),
       1000
     )
@@ -304,12 +324,16 @@ let ludicrousMode = function () {
 
   timer = 60;
 
+  marioWind();
   [...$("#game-title")][0].innerText = `Whack-a-Mole: Ludicrous Mode`;
+
   score = 0;
+
   bloodyMode();
 };
 
 let zombieMode = function () {
+  localStorage.setItem("modeSelector", "zombie");
   clearAllInt();
   moleReset();
 
@@ -347,19 +371,23 @@ let zombieMode = function () {
   nightMode();
 };
 
-let launchPage = () => (window.location.pathname = "./Whack-A-Mole/");
-startOverButton = document.createElement("button");
-startOverButton.innerText = "Play Again";
-startOverButton.style.width = "30vw";
-startOverButton.style.height = "15vh";
-startOverButton.style["font-size"] = "6vh";
-startOverButton.style["background-color"] =
-  localStorage.getItem("modeSelector") === "ludicrous"
-    ? "red"
-    : localStorage.getItem("modeSelector") === "zombie"
-    ? "darkslategray"
-    : "darkolivegreen";
-startOverButton.setAttribute("onclick", "launchPage()");
+let startOverButtonFunc = () => {
+  let startOverButton = document.createElement("button");
+  startOverButton.innerText = "Play Again";
+  startOverButton.style.width = "30vw";
+  startOverButton.style.height = "15vh";
+  startOverButton.style["font-size"] = "6vh";
+  startOverButton.style["color"] =
+    localStorage.getItem("modeSelector") === "ludicrous" ? "black" : "white";
+  startOverButton.style["background-color"] =
+    localStorage.getItem("modeSelector") === "ludicrous"
+      ? "red"
+      : localStorage.getItem("modeSelector") === "zombie"
+      ? "darkslategray"
+      : "darkolivegreen";
+  startOverButton.setAttribute("onclick", "launchPage()");
+  return startOverButton;
+};
 
 let victory = () => {
   $(
@@ -374,8 +402,9 @@ let victory = () => {
   [...$("#score-span")][0].remove();
   [...$("#timer")][0].remove();
   [...$("#game-controls")][0].innerHTML = "";
-  [...$("#game-controls")][0].appendChild(startOverButton);
+  [...$("#game-controls")][0].appendChild(startOverButtonFunc());
 };
+
 let zombieVictory = () => {
   $(
     "#whack-a-mole"
@@ -389,7 +418,7 @@ let zombieVictory = () => {
   [...$("#score-span")][0].remove();
   [...$("#timer")][0].remove();
   [...$("#game-controls")][0].innerHTML = "";
-  [...$("#game-controls")][0].appendChild(startOverButton);
+  [...$("#game-controls")][0].appendChild(startOverButtonFunc());
 };
 
 let defeat = () => {
@@ -405,9 +434,10 @@ let defeat = () => {
   [...$("#score-span")][0].remove();
   [...$("#timer")][0].remove();
   [...$("#game-controls")][0].innerHTML = "";
-  [...$("#game-controls")][0].appendChild(startOverButton);
+  [...$("#game-controls")][0].appendChild(startOverButtonFunc());
   clearInterval(timeKeeping);
 };
+
 let zombieDefeat = () => {
   $(
     "#whack-a-mole"
@@ -421,7 +451,7 @@ let zombieDefeat = () => {
   [...$("#score-span")][0].remove();
   [...$("#timer")][0].remove();
   [...$("#game-controls")][0].innerHTML = "";
-  [...$("#game-controls")][0].appendChild(startOverButton);
+  [...$("#game-controls")][0].appendChild(startOverButtonFunc());
   clearInterval(timeKeeping);
 };
 
@@ -438,7 +468,7 @@ let ludicrousDefeat = () => {
   [...$("#score-span")][0].remove();
   [...$("#timer")][0].remove();
   [...$("#game-controls")][0].innerHTML = "";
-  [...$("#game-controls")][0].appendChild(startOverButton);
+  [...$("#game-controls")][0].appendChild(startOverButtonFunc());
   clearInterval(timeKeeping);
 };
 
@@ -481,24 +511,27 @@ $("#whack-a-mole").mousedown(marioHit);
 $("#whack-a-mole").mouseup(marioWind);
 
 $(".hole").click(function () {
-  if (this.className === "mole" || this.className === "zombie-mole") {
+  if (this.className === "mole") {
     this.className = "hole";
-    if ([...$("#game-title")][0].innerText === `Whack-a-Mole: Ludicrous Mode`) {
-      [...$("#score")][0].innerText =
-        "Moles Whacked: YOU DARE CHALLENGE ME!?!?!";
-      $("#score-span")[0].style.display = "block";
-      $("#score-span")[0].style.margin = "0";
-      $("#hammer-image")[0].style.position = "fixed";
-      $("#hammer-image")[0].style.left = "70vw";
-      $("#hammer-image")[0].style.top = "2vh";
-      $("#hammer-image")[0].src = "images/uhoh-defeat.png";
-      $("#whack-a-mole").unbind("mousedown", marioHit);
-      $("#whack-a-mole").unbind("mouseup", marioWind);
-    } else {
-      $("#whack-a-mole").bind("mousedown", marioHit);
-      $("#whack-a-mole").bind("mouseup", marioWind);
-      [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
-    }
+    $("#whack-a-mole").bind("mousedown", marioHit);
+    $("#whack-a-mole").bind("mouseup", marioWind);
+    [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
+  } else if (this.className === "zombie-mole") {
+    this.className = "hole";
+    $("#whack-a-mole").bind("mousedown", marioHit);
+    $("#whack-a-mole").bind("mouseup", marioWind);
+    [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
+  } else if (this.className === "bloody-mole") {
+    this.className = "hole";
+    [...$("#score")][0].innerText = "Moles Whacked: YOU DARE CHALLENGE ME!?!?!";
+    $("#score-span")[0].style.display = "block";
+    $("#score-span")[0].style.margin = "0";
+    $("#hammer-image")[0].style.position = "fixed";
+    $("#hammer-image")[0].style.left = "70vw";
+    $("#hammer-image")[0].style.top = "2vh";
+    $("#hammer-image")[0].src = "images/uhoh-defeat.png";
+    $("#whack-a-mole").unbind("mousedown", marioHit);
+    $("#whack-a-mole").unbind("mouseup", marioWind);
   }
 });
 
