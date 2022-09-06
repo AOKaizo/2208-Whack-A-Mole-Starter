@@ -33,14 +33,10 @@ let clearAllInt = () => {
 let launchPageNightMode = () => {
   [...$("#launch-screen")][0].style["background-image"] =
     "url('images/zombie-forest-background.png')";
-  [...$("#page-title")][0].style["text-shadow"] = "4px 4px black";
   [...$("#page-title")][0].style["color"] = "green";
-  [...$("#objective-title")][0].style["text-shadow"] = "1px 1px black";
-  [...$("#objective-text")][0].style["text-shadow"] = "1px 1px black";
   [...$("#objective-title")][0].style["color"] = "green";
   [...$("#objective-text")][0].style["color"] = "green";
   [...$("#current-difficulty")][0].style["color"] = "green";
-  [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px black";
   [...$("#launch-window")][0].style["background-color"] = "darkslategrey";
   [...$("#launch-window")][0].style["border"] = "solid 20px grey";
   [...$("div button")].forEach(
@@ -51,14 +47,10 @@ let launchPageNightMode = () => {
 let launchPageBloodyMode = () => {
   [...$("#launch-screen")][0].style["background-image"] =
     "url('images/bloody-forest-background.png')";
-  [...$("#page-title")][0].style["text-shadow"] = "4px 4px black";
   [...$("#page-title")][0].style["color"] = "red";
-  [...$("#objective-title")][0].style["text-shadow"] = "1px 1px black";
-  [...$("#objective-text")][0].style["text-shadow"] = "1px 1px black";
   [...$("#objective-title")][0].style["color"] = "red";
   [...$("#objective-text")][0].style["color"] = "red";
   [...$("#current-difficulty")][0].style["color"] = "red";
-  [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px black";
   [...$("#launch-window")][0].style["background-color"] = "darkred";
   [...$("#launch-window")][0].style["border"] = "solid 20px black";
   [...$("div button")].forEach((element) => {
@@ -70,14 +62,10 @@ let launchPageBloodyMode = () => {
 let launchPageDayMode = () => {
   [...$("#launch-screen")][0].style["background-image"] =
     "url('images/normal-forest-background.jpeg')";
-  [...$("#page-title")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
   [...$("#page-title")][0].style["color"] = "black";
-  [...$("#objective-title")][0].style["text-shadow"] = "1px 1px white";
-  [...$("#objective-text")][0].style["text-shadow"] = "1px 1px white";
   [...$("#objective-title")][0].style["color"] = "black";
   [...$("#objective-text")][0].style["color"] = "black";
   [...$("#current-difficulty")][0].style["color"] = "black";
-  [...$("#current-difficulty")][0].style["text-shadow"] = "1px 1px white";
   [...$("#launch-window")][0].style["background-color"] = "olivedrab";
   [...$("#launch-window")][0].style["border"] = "solid 20px black";
   [...$("div button")].forEach((element) => {
@@ -89,9 +77,6 @@ let launchPageDayMode = () => {
 let nightMode = () => {
   [...$("#game-screen")][0].style["background-image"] =
     "url('images/zombie-forest-background.png')";
-  [...$("#game-title")][0].style["text-shadow"] = "4px 4px black";
-  [...$("#score")][0].style["text-shadow"] = "4px 4px black";
-  [...$("#timer")][0].style["text-shadow"] = "4px 4px black";
   [...$("#game-title")][0].style["color"] = "green";
   [...$("#score")][0].style["color"] = "green";
   [...$("#timer")][0].style["color"] = "green";
@@ -106,11 +91,8 @@ let nightMode = () => {
 let bloodyMode = () => {
   [...$("#game-screen")][0].style["background-image"] =
     "url('images/bloody-forest-background.png')";
-  [...$("#game-title")][0].style["text-shadow"] = "4px 4px black";
   [...$("#game-title")][0].style["color"] = "red";
-  [...$("#score")][0].style["text-shadow"] = "4px 4px black";
   [...$("#score")][0].style["color"] = "red";
-  [...$("#timer")][0].style["text-shadow"] = "4px 4px black";
   [...$("#timer")][0].style["color"] = "red";
   [...$("#whack-a-mole")][0].style["background-color"] = "darkred";
   [...$("#whack-a-mole")][0].style["border"] = "solid 20px black";
@@ -123,9 +105,6 @@ let bloodyMode = () => {
 let dayMode = () => {
   [...$("#game-screen")][0].style["background-image"] =
     "url('images/normal-forest-background.jpeg')";
-  [...$("#game-title")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
-  [...$("#score")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
-  [...$("#timer")][0].style["text-shadow"] = "2px 2px rgb(187, 244, 187)";
   [...$("#game-title")][0].style["color"] = "black";
   [...$("#score")][0].style["color"] = "black";
   [...$("#timer")][0].style["color"] = "black";
