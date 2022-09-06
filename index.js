@@ -523,7 +523,7 @@ $(".hole").click(function () {
     [...$("#score")][0].innerText = `Moles Whacked: ${++score}`;
   } else if (this.className === "bloody-mole") {
     this.className = "hole";
-    [...$("#score")][0].innerText = "Moles Whacked: YOU DARE CHALLENGE ME!?!?!";
+    [...$("#score")][0].innerText = "Moles Whacked: YOU DARE CHALLENGE US!?!?!";
     $("#score-span")[0].style.display = "block";
     $("#score-span")[0].style.margin = "0";
     $("#hammer-image")[0].style.position = "fixed";
