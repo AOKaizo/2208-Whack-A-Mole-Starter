@@ -1,0 +1,19 @@
+{
+  "name": "2208-whack-a-mole-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AOKaizo/2208-Whack-A-Mole-Starter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AOKaizo/2208-Whack-A-Mole-Starter/issues"
+  },
+  "homepage": "https://github.com/AOKaizo/2208-Whack-A-Mole-Starter#readme"
+}
