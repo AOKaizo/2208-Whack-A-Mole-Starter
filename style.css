@@ -19,12 +19,12 @@ body {
   place-self: center;
   text-align: center;
 }
+
 #launch-window {
   background-color: olivedrab;
   border: solid 20px #000;
   padding: 20px;
   width: 60%;
-
   display: flex;
   flex-wrap: wrap;
   place-items: center;
@@ -100,6 +100,7 @@ body {
   place-self: center;
   font-size: 3vh;
 }
+
 #timer {
   place-self: center;
   font-size: 2vh;
@@ -165,9 +166,9 @@ background-color: inherit!important;
   place-content: center;
   margin: -10%;
   padding: -5%;
-
   text-align: center;
 }
+
 #hammer-image {
   flex-direction: row;
 }
